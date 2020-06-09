@@ -1,23 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+  Link,
+} from "react-router-dom";
+import Layout from "./Components/Layout";
+import Home from "./Pages/Home/index.jsx";
+import NotFound from './Pages/404';
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
+      {/* Navbar */}
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Router>
+          <Switch>
+            <Route exact path="/" render={() => <Home myname="Rishabh" />} />
+            <Route exact
+              path="/about"
+              render={() => (
+                <Layout>
+                  <React.Fragment>
+                    <p>Hello</p>
+                    <p></p>
+                  </React.Fragment>
+                </Layout>
+              )}
+            />
+            <Route path='/404' exact render={() => <NotFound />} />
+          </Switch>
+        </Router>
       </header>
     </div>
   );
