@@ -8,4 +8,6 @@
 
 `yarn add redux react-redux redux-thunk redux-logger` - For redux
 
+`yarn add axios` - For axios
+
 Configuration of Redux

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -10,9 +10,10 @@ import Layout from "./Components/Layout";
 import Home from "./Pages/Home/index.jsx";
 import NotFound from './Pages/404';
 import "./App.css";
-import Contact from "./Pages/Contact";
 import Dashboard from "./Pages/Dashboard";
 import Users from "./Pages/Users";
+
+const Contact = lazy(() => import("./Pages/Contact"));
 
 function App() {
   return (
@@ -34,7 +35,7 @@ function App() {
               )}
             />
             <Route path='/404' exact render={() => <NotFound />} />
-            <Route exact path='/contact' render={() => <Contact />} />
+            <Route exact path='/contact' render={() => <Suspense fallback={<p>Loading...</p>}><Contact /></Suspense> } />
             <Route exact path='/dashboard'render={() => <Dashboard />} />
             <Route path='/users/:id' render={({match}) => <Users id={match.params.id} />} />
           </Switch>
